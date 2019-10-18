@@ -1,0 +1,34 @@
+== Docker
+
+- Virtualisation légère
+- Créer un container à partir d'une image
+- Le container va lancer un processus unique
+- Le processus sera exécuté avec ses propres librairies système
+
+
+=== C'est quoi une image ?
+
+- Image de base : une distribution linux comme debian ou <strike>alpine</strike>
+- Une succession de calques
+- Chaque calque ajoute du contenu par superposition au précédent
+- Chaque calque est immutable
+- Format conforme à la spécification OCI
+
+image::02-image-layers.png[Logo,400]
+
+
+=== Créer une image #1
+
+- Un fichier descripteur : le `Dockerfile`
+- Instructions simples : `FROM`, `RUN`, `COPY`, ...
+- Chaque instruction crée un nouveau calque
+
+image::09-Dockerfile.png[]
+
+
+=== Créer une image #2
+
+`docker build -t image:tag .`
+
+image::10-docker-build.png[]
+

@@ -1,0 +1,19 @@
+{
+	"name": "dockerfile2",
+	"version": "1.0.0",
+	"description": "CAchez ce Dockerfile que je saurais voir",
+	"directories": {
+		"doc": "docs"
+	},
+	"scripts": {
+		"start": "npm run generate:slides",
+		"generate:slides": "speaker-cli generate --slides",
+		"watch:slides": "speaker-cli generate --slides --watch"
+	},
+	"author": "nicolaznk",
+	"license": "MIT",
+	"devDependencies": {
+		"speaker-cli": "git+https://github.com/DX-DeveloperExperience/speaker-cli.git"
+	},
+	"dependencies": {}
+}

@@ -1,0 +1,84 @@
+
+== Buildah
+
+image::buildah.png[]
+
+
+=== Buildah
+
+* https://buildah.io/
+* Outil en ligne de commande pour construire des images OCI
+* Créé par redhat
+* Fait partie de la suite buildah / podman / skopeo :
+ ** Vise à remplacer le démon docker
+ ** ou à le modulariser
+* Malheureusement :
+ ** peu répandu
+ ** pas (peu ?) de communauté
+
+
+=== Buildah - installation
+
+* Très bien packagé pour les distributions redhat / fedora / centos / ...
+* Un dépôt PPA pour ubuntu : moins bien packagé
+* Linux uniquement
+
+
+=== buildah bud
+
+* `build-using-dockerfile` alias `bud`
+* Compatible avec le `Dockerfile`
+
+image::buildah-bud.png[buildah-bud,700]
+
+
+=== buildah bud vs docker build
+
+* Pas de démon
+* Rootless
+* Ne crée qu'un seul calque pour toutes les instructions
+
+
+=== buildah login / tag / push
+
+* Commandes similaires à docker
+
+image::buildah-tag-push.png[]
+
+
+=== Buildah sans Dockerfile
+
+
+* Possible d'utiliser buildah sans `Dockerfile`
+* Philosophie de build différente :
+ ** `buildah from` : créer un container à partir d'une image de base
+ ** `buildah config` : author, workingdir, env, cmd, entrypoint
+ ** `buildah add`
+ ** `buildah copy`
+ ** `buildah run`
+ ** `buildah commit` : crée l'image
+
+
+=== buildahfile.sh
+
+image::buildahfile.png[buildahfile,800]
+
+
+=== buildahfile.sh
+
+image::buildahfile-build.png[]
+
+
+=== buildahfile.go
+
+* `go get github.com/containers/buildah`
+
+image::buildahfile-go.png[buildahfile-go,500]
+
+
+=== buildah mount
+
+image::buildah-mount.png[buildah-mount, 700]
+
+
+

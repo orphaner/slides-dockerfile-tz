@@ -1,0 +1,175 @@
+
+== !
+
+image::05-stop-dreaming.jpeg[stop-dreaming,500]
+
+
+=== #0 - Démon docker
+
+- Le build passe par le démon docker
+- Un démon qui sert à tout : le build et le runtime
+- Griefs :
+    ** Un démon qui sert à tout
+
+
+=== #1 - Démon docker en root
+
+- Le démon docker tourne en root
+- Griefs :
+  ** Root inutile pour builder une image
+  ** Root = risque immédiat de sécurité
+
+
+=== #1 - Démon docker en root
+
+image::20-got-root-access.png[]
+
+
+=== #2 - Contexte de build
+
+- Le contenu du dossier courant est envoyé au démon
+- Griefs :
+  ** Transfert pas instantané
+  ** Risque d'envoyer inutilement du contenu
+
+
+=== #2 - Contexte de build
+
+- Exemple : build d'une application angular
+- Seul le dossier `dist/` sera dans l'image
+
+
+image::30-node_modules-example.png[]
+
+video::send-context.mp4[width=640, start=60, end=140, options=autoplay]
+
+
+=== #3 - Fichier .dockerignore
+
+
+- Fonctionnement similaire au `.gitignore`
+- Permets de filtrer le contenu à envoyer au démon docker
+- Griefs :
+  ** Attention aux effets de bords
+  ** C'est juste une rustine
+
+
+=== #4 - Cache des calques
+
+- Chaque instruction du Dockerfile crée un nouveau calque
+- Chaque calque est mis en cache et n'est rebuildé que si nécessaire
+- Griefs :
+  ** Attention à l'ordre des calques
+  ** Proverbe populaire : "le cache est un cache misère"
+
+
+=== #4 - Cache des calques
+
+image::cache-order-ok.png[]
+
+image::cache-order-ko.png[]
+
+
+=== #5 - FROM
+
+- Crée une image à partir d'une autre
+- Basé sur l'héritage
+- Griefs :
+  ** "prefer composition over inheritance"
+  ** ex: image de build mvn + npm
+
+
+=== #6 - RUN
+
+
+- Éxécute une commande système
+- 1 RUN = 1 calque
+- Griefs :
+  ** Pas de maîtrise sur la création des calques
+  ** Attention aux fichiers supprimés
+  ** La bonne pratique
+
+
+=== #6 - RUN
+
+image::RUN-apt-get-clean-ko.png[]
+
+
+=== #6 - RUN
+
+image::RUN-apt-get-clean-ok.png[]
+
+
+=== #6 - RUN
+
+image::RUN-good-practise-1.png[good-practise-1,700]
+
+
+=== #6 - RUN
+
+image::RUN-good-practise-2.png[good-practise-2,400]
+
+
+=== #7 - COPY vs ADD
+
+- `COPY src dest`
+- `ADD src dest`
+- `COPY` : copie un fichier local dans l'image
+- `ADD` fait la même chose, mais :
+  ** src peut être une url
+  ** dézippe si src est un zip
+- Griefs :
+  ** Commandes similaires
+  ** `ADD`, encore une rustine ?
+
+
+[.condensed]
+=== #8 - CMD
+
+- Définit une commande par défaut à lancer au démarrage du container
+- 3 formes :
+  ** `CMD ["executable", "param1", "param2"]` : exec form
+  ** `CMD ["param1", "param2"]` : paramètres d'un `ENTRYPOINT` en exec form
+  ** `CMD command param1 param2` : shell form
+
+- Le shell form démarre un shell :
+  ** `/bin/sh -c CMD`
+  ** L'exécutable n'aura pas le PID 1
+  ** Et donc ne recevra pas les signaux d'extinction par ex.
+
+- L'exec form ne démarre pas de shell :
+  ** Pas d'interprétation des variables
+  ** Pas de `|`, `&&`, `||`, `>`
+  ** Pas de `PATH` : bien mettre le chemin complet vers l'exécutable
+
+
+=== #8 - ENTRYPOINT
+
+- Configure un container qui va se comporter comme un exécutable
+- 3 formes :
+  ** `ENTRYPOINT ["executable", "param1", "param2"]` : exec form
+  ** `ENTRYPOINT command param1 param2` : shell form
+- `CMD` est passé en paramètre du `ENTRYPOINT` (si exec form)
+- `CMD` est ignoré si on passe des paramètres de CLI à la création du container
+
+
+=== #8 - CMD / ENTRYPOINT
+
+- Griefs :
+  ** Pas facile à comprendre, donc difficile à expliquer
+  ** Plein de subtilités
+  ** shell form vs json form
+  ** Syntaxe de tableau json...
+
+
+=== #x - EXPOSE
+
+- ...
+
+=== #y - ONBUILD
+
+- ...
+
+=== #z - Multistage build
+
+- ...

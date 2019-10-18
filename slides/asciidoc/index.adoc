@@ -1,0 +1,43 @@
+:revealjsdir: https://cdn.rawgit.com/hakimel/reveal.js/3.8.0/
+:revnumber: {project-version}
+:example-caption!:
+ifndef::imagesdir[:imagesdir: images]
+:docinfo: shared
+:navigation:
+:menu:
+:header_footer: true
+:status:
+:slideNumber: true
+:showSlideNumber: true
+//:title-slide-background-image: ./../../img/bg.jpeg
+:title-slide-transition: zoom
+:title-slide-transition-speed: fast
+:icons: font
+:revealjs_history: true
+
+
+= Cachez ce Dockerfile que je ne saurais voir
+
+image::00-sad-docker.png[Logo,500]
+
+
+include::chapters/10-image.adoc[]
+include::chapters/20-griefs.adoc[]
+include::chapters/30-buildah.adoc[]
+
+
+== Questions ?
+
+image::questions.png[questions, 600]
+
+== Test
+
+----
+line of code  // <1>
+line of code  # <2>
+line of code  ;; <3>
+----
+<1> A callout behind a line comment for C-style languages.
+<2> A callout behind a line comment for Ruby, Python, Perl, etc.
+<3> A callout behind a line comment for Clojure.
+
