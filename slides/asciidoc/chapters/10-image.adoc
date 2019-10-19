@@ -10,7 +10,7 @@ ifndef::imagesdir[:imagesdir: ../../images]
 
 === C'est quoi une image ?
 
-- Image de base : une distribution linux comme debian ou <strike>alpine</strike>
+- Image de base : une distribution linux comme debian ou [line-through]#alpine#
 - Une succession de calques
 - Chaque calque ajoute du contenu par superposition au précédent
 - Chaque calque est immutable

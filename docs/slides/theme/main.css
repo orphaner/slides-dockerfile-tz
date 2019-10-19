@@ -617,3 +617,7 @@ section.has-dark-background h3 {
 .condensed p {
     margin: 0px;
 }
+
+.line-through {
+    text-decoration: line-through;
+}
