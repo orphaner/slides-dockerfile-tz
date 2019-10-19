@@ -1,7 +1,7 @@
 {
-	"name": "dockerfile2",
+	"name": "dockerfile-tz",
 	"version": "1.0.0",
-	"description": "CAchez ce Dockerfile que je saurais voir",
+	"description": "Cachez ce Dockerfile que je saurais voir",
 	"directories": {
 		"doc": "docs"
 	},

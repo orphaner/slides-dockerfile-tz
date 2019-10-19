@@ -1,0 +1,61 @@
+ifndef::imagesdir[:imagesdir: ../../images]
+
+== Extras
+
+=== Buildah - installation ubuntu / debian
+
+
+* Ubuntu : https://launchpad.net/~projectatomic/+archive/ubuntu/ppa
+* Debian :
+
+----
+sudo apt-get install -y uidmap
+sudo sysctl -w kernel.unprivileged_userns_clone=1
+
+sudo apt-key adv --keyserver keyserver.ubuntu.com --recv-keys 018BA5AD9DF57A4448F0E6CF8BECF1637AD8C79D
+sudo echo "deb http://ppa.launchpad.net/projectatomic/ppa/ubuntu bionic main" \
+    > /etc/apt/sources.list.d/projectatomic-ubuntu-ppa.list
+sudo apt install buildah
+sudo wget https://raw.githubusercontent.com/projectatomic/registries/master/registries.conf \
+    -o /etc/containers/registries.conf
+----
+
+
+=== Références Docker
+
+Les pages qui m'ont aidées à construire cette prez :
+
+- https://docs.docker.com/engine/reference/builder/[Dockerfile Reference - Official]
+- https://docs.docker.com/develop/develop-images/dockerfile_best-practices/[Best practices for writing Dockerfiles - Official]
+- https://github.com/opencontainers/image-spec[OCI Image Format Specification] / https://github.com/opencontainers/image-spec/blob/master/spec.md[Open Container Initiative] / https://docs.docker.com/registry/spec/manifest-v2-2/[Image Manifest Version 2, Schema 2]
+- https://en.wikipedia.org/wiki/OverlayFS[OverlayFS] / https://en.wikipedia.org/wiki/Union_mount[Union mount]
+- https://nickjanetakis.com/blog/docker-tip-2-the-difference-between-copy-and-add-in-a-dockerile[Difference between COPY and ADD]
+- https://goinbigdata.com/docker-run-vs-cmd-vs-entrypoint/[Docker RUN vs ENTRYPOINT]
+- https://www.arolla.fr/blog/2016/09/quelques-precisions-dockerfile/[Quelques précisions sur le dockerfile]
+- https://openliberty.io/blog/2018/06/29/optimizing-spring-boot-apps-for-docker.html[Optimizing spring boot apps for docker]
+- https://gist.github.com/g0t4/1119399dca67bb4d1d28e7e975f90c72[Docker cheat sheet (gist)]
+
+
+=== Références Buildah
+
+- https://buildah.io/[Buildah] / https://podman.io/[Podman] / https://github.com/containers/skopeo[Skopeo]
+- https://github.com/containers/buildah/blob/master/install.md[Installation Instructions - Official]
+- https://github.com/containers/buildah/tree/master/docs/tutorials[Buildah tutorials - Official]
+- https://www.redhat.com/sysadmin/getting-started-buildah[Getting Started With Buildah - Redhat]
+- https://linuxhandbook.com/buildah-basics/[Getting Started With Buildah - Linux Handbook]
+
+
+=== Autres systèmes de builds
+
+- https://github.com/GoogleContainerTools/kaniko[Kaniko]
+- https://github.com/genuinetools/img[genuinetools/img]
+- https://github.com/moby/buildkit[Buildkit by docker]
+- https://blog.zenika.com/2018/06/25/decouverte-de-buildkit/[Découverte de Buildkit - Zenika Blog]
+
+
+=== Autres références
+
+- https://github.com/docker-library/php/blob/master/7.3/buster/cli/Dockerfile[Exemple de RUN affreux de php]
+- https://riptutorial.com/fr/docker/topic/658/demarrer-avec-docker[RIP tutorial sur docker]
+- https://www.binarytides.com/add-ubuntu-ppa-repository-to-debian-7-wheezy/[Comment ajouter un PPA ubuntu sous debian]
+- https://bloglaurel.tumblr.com/archive/tagged/docker[Archives Laurel logos docker]
